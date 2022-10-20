@@ -1,0 +1,58 @@
+---
+title: "CLT"
+author: "Cadence Gorden"
+date: "2022-10-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(lattice)
+```
+
+```{r}
+Homers_data <- read.csv(file="Homers_data.csv")
+my1000 <- sample(Homers_data$kkardashtemp ,size = 1000, replace=T)
+densityplot(my1000,main="original data")
+ggplot(Homers_data, aes(x=kkardashtemp, fill=sex)) + geom_density()
+```
+
+This graph shows us that there is not a normal solution but a bimodal solution. We know this because there is two normal solutions which mean bimodal. 
+
+```{r}
+guys<-filter(Homers_data, sex=="male") 
+
+```
+
+
+```{r}
+Homers_data <- read.csv(file="Homers_data.csv")
+guys1000 <- sample(guys$kkardashtemp ,size = 1000, replace=T)
+densityplot(guys1000,main="original data")
+
+```
+
+
+This graph shows us the guys are voting her in the 100's which means this is not a normal solution. It is a left skewed distribution. 
+
+```{r}
+girls<-filter(Homers_data, sex=="female") 
+
+```
+
+```{r}
+Homers_data <- read.csv(file="Homers_data.csv")
+girls1000 <- sample(girls$kkardashtemp ,size = 1000, replace=T)
+densityplot(girls1000,main="original data")
+
+```
+
+This graphshows us the girls are voting her low 
+
+
+```{r}
+basicCN <- ggplot(Homers_data,aes(x=kkardashtemp,col=sex))+geom_density()
+
+```
+
