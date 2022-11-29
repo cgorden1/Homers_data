@@ -109,7 +109,7 @@ p <- ggplot(my1000, aes(x=k16), col=sex) +
 p + ggtitle("n = 16") +
   xlab("temperature") + ylab(" density")
 
-print(paste('mean = ', mean(my1000$k9), ' sd = ',sd(my1000$k9)))
+print(paste('mean = ', mean(my1000$k16), ' sd = ',sd(my1000$k16)))
 ```
 This graph also only has one peak, so that means the mean is 'r mean(my1000$k16)' and the sd is 'r sd(my1000$k16)'. 
 
@@ -127,10 +127,32 @@ p <- ggplot(my1000, aes(x=k25), col=sex) +
   #Add mean line
   geom_vline(aes(xintercept=mean(k25)),
              color="blue", linetype="dashed", size=1)
-p + ggtitle("n = 2") +
+p + ggtitle("n = 25") +
   xlab("temperature") + ylab(" density")
 
-print(paste('mean = ', mean(my1000$k9), ' sd = ',sd(my1000$k9)))
+print(paste('mean = ', mean(my1000$k25), ' sd = ',sd(my1000$k25)))
 ```
 
 By looking at the pattern of results, all the graph are only going to have one peak. This means the mean is going to be 'r mean(my1000$k25)' and the sd is going to be 'r sd(my1000$k25)'. 
+
+```{r}
+numb= 36
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T), "kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol = numb)
+x.avg<- apply(mdata,1,mean)
+my1000$k36 =x.avg
+
+
+p <- ggplot(my1000, aes(x=k36), col=sex) +
+  geom_density()+
+  
+  #Add mean line
+  geom_vline(aes(xintercept=mean(k36)),
+             color="blue", linetype="dashed", size=1)
+p + ggtitle("n = 36") +
+  xlab("temperature") + ylab(" density")
+
+print(paste('mean = ', mean(my1000$k36), ' sd = ',sd(my1000$k36)))
+```
+
+As we can see by looking at the previous graph, the pattern shows us all the graphs are going to have one peak. The mean is 'r mean(my1000$k36)' and the sd is 'r sd(my1000$k36)'. 
