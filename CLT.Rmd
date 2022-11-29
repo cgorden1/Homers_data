@@ -156,3 +156,5 @@ print(paste('mean = ', mean(my1000$k36), ' sd = ',sd(my1000$k36)))
 ```
 
 As we can see by looking at the previous graph, the pattern shows us all the graphs are going to have one peak. The mean is 'r mean(my1000$k36)' and the sd is 'r sd(my1000$k36)'. 
+
+In conclusion, from looking at the sample the mean stayed pretty close to the same the only thing that changed was the sd. Through these graphs we can see the bigger sample means the more the sd will reduce. So when you divide the original with the square root of the sample, you will get the new sd. 
