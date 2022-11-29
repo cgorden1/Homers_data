@@ -12,6 +12,16 @@ require(lattice)
 ```
 
 ```{r}
+Homers_data<- read.csv(file="Homers_data.csv")
+
+my1000<- sample(Homers_data , size = 1000, replace=T)
+```
+
+
+
+
+
+```{r}
 
 library(ggplot2)
 sampleNumber = sample(1:10000, size = 1000)
