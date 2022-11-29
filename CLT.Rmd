@@ -12,47 +12,103 @@ require(lattice)
 ```
 
 ```{r}
-Homers_data <- read.csv(file="Homers_data.csv")
-my1000 <- sample(Homers_data$kkardashtemp ,size = 1000, replace=T)
-densityplot(my1000,main="original data")
-ggplot(Homers_data, aes(x=kkardashtemp, fill=sex)) + geom_density()
+
+library(ggplot2)
+sampleNumber = sample(1:10000, size = 1000)
+library(dplyr)
+my1000<- Homers_data[sampleNumber, ]
+names(my1000)
+# Basic density
+p <- ggplot(my1000, aes(x=kkardashtemp,col=sex))+
+  geom_density()
+p
+# Add mean line
+p+ geom_vline(aes(xintercept=mean(kkardashtemp)),
+                color="blue", linetype="dashed", size=1)
+print(paste('mean= ', mean(my1000$kkardashtemp),' sd= ',sd(my1000$kkardastemp)))
 ```
 
 This graph shows us that there is not a normal solution but a bimodal solution. We know this because there is two normal solutions which mean bimodal. 
 
 ```{r}
-guys<-filter(Homers_data, sex=="male") 
+numb=2
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T), "kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol = numb)
+x.avg<- apply(mdata,1,mean)
+my1000$k2 =x.avg
 
-```
+p<- ggplot(my1000, aes(x=k2)) +
+  geom_density()
+p
 
-
-```{r}
-Homers_data <- read.csv(file="Homers_data.csv")
-guys1000 <- sample(guys$kkardashtemp ,size = 1000, replace=T)
-densityplot(guys1000,main="original data")
-
-```
-
-
-This graph shows us the guys are voting her in the 100's which means this is not a normal solution. It is a right skewed distribution. 
-
-```{r}
-girls<-filter(Homers_data, sex=="female") 
-
+# Add mean line
+  geom_vline(aes(xintercept=mean(k2)),
+             color="blue", linetype="dashed", size=1)
+print(paste('mean= ', mean(my1000$k20),' sd = ',sd(my1000$k2)))
 ```
 
 ```{r}
-Homers_data <- read.csv(file="Homers_data.csv")
-girls1000 <- sample(girls$kkardashtemp ,size = 1000, replace=T)
-densityplot(girls1000,main="original data")
+numb= 4
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T), "kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol = numb)
+x.avg<- apply(mdata,1,mean)
+my1000$k4 =x.avg
 
+
+p <- ggplot(my1000, aes(x=k4), col=sex) +
+  geom_density()+
+  
+  #Add mean line
+  geom_vline(aes(xintercept=mean(k4)),
+             color="blue", linetype="dashed", size=1)
+p + ggtitle("n = 4") +
+  xlab("temperature") + ylab(" density")
+
+print(paste('mean = ', mean(my1000$k4), ' sd = ',sd(my1000$k4)))
 ```
-
-This graph shows us the girls are voting her low which means it is still not a normal solution but a left skewed distribution. 
-
 
 ```{r}
-basicCN <- ggplot(Homers_data,aes(x=kkardashtemp,col=sex))+geom_density()
+numb= 9
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T), "kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol = numb)
+x.avg<- apply(mdata,1,mean)
+my1000$k9 =x.avg
 
+
+p <- ggplot(my1000, aes(x=k9), col=sex) +
+  geom_density()+
+  
+  #Add mean line
+  geom_vline(aes(xintercept=mean(k9)),
+             color="blue", linetype="dashed", size=1)
+p + ggtitle("n = 9") +
+  xlab("temperature") + ylab(" density")
+
+print(paste('mean = ', mean(my1000$k9), ' sd = ',sd(my1000$k9)))
 ```
 
+```{r}
+options(digits = 2)
+```
+In this graph theres one peak. The mean is 'r mean(my1000$k9)' and the sd is 'r sd(my1000$k9)'
+
+```{r}
+numb= 16
+Hdata = Homers_data[sample(1:1000, size=numb*1000, replace=T), "kkardashtemp"]
+mdata <-matrix(Hdata,nrow=1000,ncol = numb)
+x.avg<- apply(mdata,1,mean)
+my1000$k16 =x.avg
+
+
+p <- ggplot(my1000, aes(x=k16), col=sex) +
+  geom_density()+
+  
+  #Add mean line
+  geom_vline(aes(xintercept=mean(k16)),
+             color="blue", linetype="dashed", size=1)
+p + ggtitle("n = 16") +
+  xlab("temperature") + ylab(" density")
+
+print(paste('mean = ', mean(my1000$k9), ' sd = ',sd(my1000$k9)))
+```
+This graph also only has one peak, so that means the mean is 'r mean(my1000$k16)' and the sd is 'r sd(my1000$k16)'. 
