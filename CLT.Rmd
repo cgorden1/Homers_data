@@ -34,7 +34,7 @@ densityplot(guys1000,main="original data")
 ```
 
 
-This graph shows us the guys are voting her in the 100's which means this is not a normal solution. It is a left skewed distribution. 
+This graph shows us the guys are voting her in the 100's which means this is not a normal solution. It is a right skewed distribution. 
 
 ```{r}
 girls<-filter(Homers_data, sex=="female") 
@@ -48,7 +48,7 @@ densityplot(girls1000,main="original data")
 
 ```
 
-This graphshows us the girls are voting her low 
+This graph shows us the girls are voting her low which means it is still not a normal solution but a left skewed distribution. 
 
 
 ```{r}
